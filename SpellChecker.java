@@ -32,6 +32,8 @@ public class SpellChecker {
 		if (word2.isEmpty()) {
 			return word1.length();
 		}
+		word1 = word1.toLowerCase(); // turns word1 into lowercase characters.
+		word2 = word2.toLowerCase(); // turns word2 into lowercase characters.
 		if (head(word1) == head(word2)) {
 			return levenshtein(tail(word1), tail(word2));
 		}
