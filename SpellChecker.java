@@ -55,15 +55,16 @@ public class SpellChecker {
 	}
 
 	public static String spellChecker(String word, int threshold, String[] dictionary) {
-		String mostResembles = word; // will contain the most closly resumbled word.
+		String mostResembles = word; // will contain the most closly resembled word in dictionary.
+		int minDistance = word.length(); // will contain the smallest distance found.
 		// go through the dictionary.
 		for (int i = 0; i < dictionary.length; i++) {
 			// find matching first letters.
 			if (word.charAt(0) == dictionary[i].charAt(0)) {
 				// find the first word with given threshold or less.
-				if (levenshtein(word, dictionary[i]) <= threshold) {
+				if (levenshtein(word, dictionary[i]) <= threshold && minDistance > levenshtein(word, dictionary[i])) {
 					mostResembles = dictionary[i];
-					threshold = levenshtein(word, dictionary[i]);
+					minDistance = levenshtein(word, dictionary[i]);
 				}
 			}
 		}
